@@ -35,8 +35,10 @@
                         <th scope="row"><?= $customer->customer_id ?></th>
                         <td><?= $customer->name ?></td>
                         <td><i class="fa-solid fa-user-pen"></i>
-                            <i class="fa-solid fa-trash"></i>
-                            <a href="<?=base_url()?>customer/show/<?=$customer->customer_id ?>"><i class="fa-solid fa-eye"></i></a>
+                            <a href="<?php echo base_url(); ?>customer/delete/<?php echo $customer->customer_id; ?>"><i
+                                    class="fa-solid fa-trash"></i></a>
+                            <a href="<?= base_url() ?>customer/show/<?= $customer->customer_id ?>"><i
+                                    class="fa-solid fa-eye"></i></a>
                         </td>
                     </tr>
                 <?php } ?>

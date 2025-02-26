@@ -1,6 +1,7 @@
 <?php
 namespace Formacom\Models;
 use Illuminate\Database\Eloquent\Model;
+use Formacom\Database; // Add this line to import the Database class
 class Customer extends Model{
     protected $table="customer";
     protected $primaryKey = 'customer_id';
@@ -10,6 +11,8 @@ class Customer extends Model{
     public function phones(){
         return $this->hasMany(Phone::class,"customer_id");
     }
+   
 }
+
 
 ?>
