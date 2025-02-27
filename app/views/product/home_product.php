@@ -23,23 +23,23 @@
             <div class="form-row">
                 <div class="form-group col-12">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Product name">
+                    <input type="text" class="form-control" id="name" placeholder="Product name" required>
                 </div>
                 <div class="form-group col-12">
                     <label for="street">Description</label>
-                    <input type="text" class="form-control" id="description" placeholder="Description">
+                    <input type="text" class="form-control" id="description" placeholder="Description" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputAddress">Categoria</label>
-                <select id="category">
+                <select id="category" required>
                     <option selected>Choose...</option>
 
                 </select>
             </div>
             <div class="form-group">
                 <label for="">Provider</label>
-                <select id="provider">
+                <select id="provider" required>
                     <option selected>Choose...</option>
 
                 </select>
@@ -47,17 +47,35 @@
             <div class="row">
                 <div class="form-group col-md-6 col-sm-12">
                     <label for="stock">Stock</label>
-                    <input type="number" min="0" class="form-control" id="stock" placeholder="Stock">
+                    <input type="number" min="0" class="form-control" id="stock" placeholder="Stock" required>
                 </div>
                 <div class="form-group col-md-6 col-sm-12">
                     <label for="price">Price</label>
-                    <input type="number" min="0" class="form-control" id="price" placeholder="Price">
+                    <input type="number" min="0" class="form-control" id="price" placeholder="Price" required>
                 </div>
             </div>
 
 
             <button type="submit" class="btn col-12 btn-primary">Save Product</button>
         </form>
+        <hr>
+        <a href="<?= base_url() ?>admin/home_admin" class="btn btn-primary">Back to menu</a>
+        <hr>
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Provider</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Operations</th>
+                </tr>
+                <tbody id="products">
+            </thead>
+        </table>
 
 
 
