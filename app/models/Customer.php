@@ -11,6 +11,10 @@ class Customer extends Model{
     public function phones(){
         return $this->hasMany(Phone::class,"customer_id");
     }
+
+    public function orders(){
+        return $this->hasMany(Order::class,"customer_id");
+    }
    
 }
 

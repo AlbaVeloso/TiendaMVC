@@ -13,7 +13,7 @@
             <a href="<?= base_url() ?>product" class="list-group-item list-group-item-action">Products</a>
             <a href="<?= base_url() ?>provider/home" class="list-group-item list-group-item-action">Providers</a>
             <a href="<?= base_url() ?>customer/home" class="list-group-item list-group-item-action">Customers</a>
-            <a href="<?= base_url() ?>orders" class="list-group-item list-group-item-action">Orders</a>
+            <a href="<?= base_url() ?>order" class="list-group-item list-group-item-action">Orders</a>
             <a href="<?= base_url() ?>logout" class="list-group-item list-group-item-action list-group-item-danger">Logout</a>
         </div>
     </div>

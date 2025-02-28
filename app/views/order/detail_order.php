@@ -10,48 +10,30 @@
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="<?= base_url() ?>assets/js/product.js" defer></script>
+    <script src="<?= base_url() ?>assets/js/order.js" defer></script>
     <title>Products</title>
 </head>
 
 <body>
     <div class="container">
         <nav class="navbar navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1">New Product</span>
+            <span class="navbar-brand mb-0 h1">Order Detail</span>
         </nav>
         <form id="form">
             <div class="form-row">
                 <div class="form-group col-12">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Product name" required>
+                    <input type="hidden" name="order_id" id="order_id" value="<?= $data['order']->order_id ?>">
+                    <label for="name">Product</label>
+                    <select name="product" id="product">
+                        <option selected>Choose...</option>
+                        <?php foreach ($data['products'] as $product): ?>
+                            <option value="<?= $product['product_id'] ?>"><?= $product['name'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="form-group col-12">
-                    <label for="street">Description</label>
-                    <input type="text" class="form-control" id="description" placeholder="Description" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="inputAddress">Categoria</label>
-                <select id="category" required>
-                    <option selected>Choose...</option>
-
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="">Provider</label>
-                <select id="provider" required>
-                    <option selected>Choose...</option>
-
-                </select>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6 col-sm-12">
-                    <label for="stock">Stock</label>
-                    <input type="number" min="0" class="form-control" id="stock" placeholder="Stock" required>
-                </div>
-                <div class="form-group col-md-6 col-sm-12">
-                    <label for="price">Price</label>
-                    <input type="number" min="0" class="form-control" id="price" placeholder="Price" required>
+                    <label for="street">Cantidad</label>
+                    <input type="number"class="form-control" id="description" placeholder="Description" required>
                 </div>
             </div>
 
@@ -73,7 +55,7 @@
                     <th scope="col">Price</th>
                     <th scope="col">Operations</th>
                 </tr>
-                
+
             </thead>
             <tbody id="products">
 

@@ -35,56 +35,59 @@ fetch("http://localhost/tiendamvc/api/products")
         console.log(err);
     })
 
-document.getElementById("form").onsubmit = function (e) {
-    e.preventDefault();
-    let product = {
-        'name': document.getElementById("name").value,
-        'description': document.getElementById("description").value,
-        'category_id': document.getElementById("category").value,
-        'provider_id': document.getElementById("provider").value,
-        'stock': document.getElementById("stock").value,
-        'price': document.getElementById("price").value
-    }
-    //ToDO: Validar los datos
-    fetch("http://localhost/tiendamvc/api/newproduct", {
-        method: 'POST',
-        body: JSON.stringify(product),
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+document.getElementById('form').addEventListener('submit', function(event) {
+    event.preventDefault(); // Evitar el envío normal del formulario
+
+    // Crear un objeto FormData con los datos del formulario
+    var formData = new FormData(this);
+
+    // Realizar la solicitud AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost/tiendamvc/order/create', true);  // Asegúrate de que esta URL sea correcta
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                // Respuesta exitosa
+                const response = JSON.parse(xhr.responseText);
+                console.log(response);  // Mostrar la respuesta en la consola para depuración
+                alert(response.message);  // Mostrar mensaje de éxito
+                // Puedes redirigir al usuario o limpiar el formulario si es necesario
+            } else {
+                // Error
+                console.log(xhr.responseText);  // Mostrar el error en la consola para depuración
+                alert('Error al guardar la orden');
+            }
         }
-    })
-        .then(data => data.json())
-        .then(datos => {
-            showproducts(datos);
-        })
-}
+    };
+    
+    xhr.send(formData); // Enviar los datos del formulario
+});
 
-
-function showproducts(datos) {
+function showProducts(products) {
     let tbody = document.getElementById("products");
     tbody.innerHTML = "";
-    datos.forEach(element => {
+    products.forEach(product => {
         let tr = document.createElement("tr");
         let td = document.createElement("td");
-        td.textContent = element.product_id;
+        td.textContent = product.product_id;
         tr.appendChild(td);
         td = document.createElement("td");
-        td.textContent = element.name;
+        td.textContent = product.name;
         tr.appendChild(td);
         td = document.createElement("td");
-        td.textContent = element.description;
+        td.textContent = product.description;
         tr.appendChild(td);
         td = document.createElement("td");
-        td.textContent = element.category.name;
+        td.textContent = product.category.name;
         tr.appendChild(td);
         td = document.createElement("td");
-        td.textContent = element.provider.name;
+        td.textContent = product.provider.name;
         tr.appendChild(td);
         td = document.createElement("td");
-        td.textContent = element.stock;
+        td.textContent = product.stock;
         tr.appendChild(td);
         td = document.createElement("td");
-        td.textContent = element.price;
+        td.textContent = product.price;
         tr.appendChild(td);
         tbody.appendChild(tr);
     });
